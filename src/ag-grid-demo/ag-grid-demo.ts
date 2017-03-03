@@ -73,7 +73,7 @@ export class AgGridDemo {
   }
   onReady() {
     console.log("allOfTheData", this.allOfTheData);
-    this.http.fetch("/database-mockup/olympicWinners.json")
+    this.http.fetch("../../database-mockup/olympicWinners.json")
       .then((res) => res.json())
       .then((res) => {
         this.allOfTheData = res;
