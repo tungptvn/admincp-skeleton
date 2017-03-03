@@ -9,16 +9,16 @@ gulp.copy=function(src,dest){
 
 gulp.task('deploy', function(callback) {
   runSequence(
-    // ['copy-assets','copy-pages','copy-images'],
+    ['copy-database-mockup'],
               'push-to-gh-pages',
               callback);
 });
 
-// gulp.task('copy-assets', function() {
+gulp.task('copy-database-mockup', function() {
     
-//     return gulp.src(['assets/**/*']).pipe(gulp.dest('dist/assets'));
+    return gulp.src(['database-mockup/**/*']).pipe(gulp.dest('dist/database-mockup'));
 
-// });
+});
 // gulp.task('copy-pages', function() {
     
 //     return gulp.src(['pages/**/*']).pipe(gulp.dest('dist/pages'));
