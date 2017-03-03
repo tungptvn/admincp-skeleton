@@ -26,7 +26,6 @@ const ENV: 'development' | 'production' | 'test' = process.env.NODE_ENV && proce
 // basic configuration:
 const title = 'Aurelia Navigation Skeleton';
 const baseUrl = '/';
-const baseUrlProd='https://tungptvn.github.io/admincp-skeleton/'
 const rootDir = path.resolve();
 const srcDir = path.resolve('src');
 const outDir = path.resolve('dist');
