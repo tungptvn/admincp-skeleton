@@ -64,7 +64,7 @@
   "homepage": "https://github.com/aurelia/skeleton-navigation#readme",
   "aurelia": {
     "build": {
-      "resources": []
+      "resources": ["ag-grid-aurelia"]
     }
   },
   "dependencies": {

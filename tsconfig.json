@@ -4,11 +4,11 @@
     "module": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictNullChecks": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "allowJs": true,
     "skipLibCheck": true,
+    "strictNullChecks": false,
     "lib": [
       "es2017", "dom"
     ]
