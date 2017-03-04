@@ -9,7 +9,7 @@ gulp.copy=function(src,dest){
 
 gulp.task('deploy', function(callback) {
   runSequence(
-    ['copy-database-mockup'],
+    ['copy-database-mockup','copy-favicon' ],
               'push-to-gh-pages',
               callback);
 });
@@ -17,6 +17,11 @@ gulp.task('deploy', function(callback) {
 gulp.task('copy-database-mockup', function() {
     
     return gulp.src(['database-mockup/**/*']).pipe(gulp.dest('dist/database-mockup'));
+
+});
+gulp.task('copy-favicon', function() {
+    
+    return gulp.src(['favicon.ico']).pipe(gulp.dest('dist/'));
 
 });
 // gulp.task('copy-pages', function() {
