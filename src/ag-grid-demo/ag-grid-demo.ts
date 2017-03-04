@@ -1,9 +1,9 @@
 
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid';
 import { HttpClient } from 'aurelia-fetch-client';
-import { inject } from 'aurelia-dependency-injection';
+import { inject,NewInstance  } from 'aurelia-dependency-injection';
 // import 'ag-grid-enterprise/main';
- @inject(HttpClient)
+ @inject(NewInstance .of(HttpClient))
 export class AgGridDemo {
 
   private gridOptions: GridOptions;
