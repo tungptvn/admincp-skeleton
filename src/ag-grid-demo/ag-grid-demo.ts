@@ -3,7 +3,7 @@ import { GridOptions, GridApi, ColumnApi } from 'ag-grid';
 import { HttpClient } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-dependency-injection';
 // import 'ag-grid-enterprise/main';
-@inject(HttpClient)
+ @inject(HttpClient)
 export class AgGridDemo {
 
   private gridOptions: GridOptions;
