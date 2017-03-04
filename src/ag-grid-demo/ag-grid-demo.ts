@@ -1,9 +1,9 @@
 
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid';
 import { HttpClient } from 'aurelia-fetch-client';
-import { inject,NewInstance  } from 'aurelia-dependency-injection';
+import { inject, NewInstance } from 'aurelia-dependency-injection';
 // import 'ag-grid-enterprise/main';
- @inject(NewInstance .of(HttpClient))
+@inject(NewInstance.of(HttpClient))
 export class AgGridDemo {
 
   private gridOptions: GridOptions;
@@ -39,19 +39,40 @@ export class AgGridDemo {
         suppressSorting: true,
         suppressMenu: true
       },
-      { headerName: "Athlete", field: "athlete", width: 150, suppressMenu: true },
-      { headerName: "Age", field: "age", width: 90, filter: 'number', filterParams: { newRowsAction: 'keep' } },
+      {
+        headerName: "Athlete", field: "athlete", width: 150, filter: 'set',
+        filterParams: { apply: true, newRowsAction: 'keep' }
+      },
+      { headerName: "Age", field: "age", width: 90, filter: 'number', filterParams: {apply: true, newRowsAction: 'keep' } },
       { headerName: "Country", field: "country", width: 120, filter: 'set', filterParams: { values: this.listOfCountries, newRowsAction: 'keep' } },
       { headerName: "Year", field: "year", width: 90, filter: 'set', filterParams: { values: ['2000', '2004', '2008', '2012'], newRowsAction: 'keep' } },
-      { headerName: "Date", field: "date", width: 110, suppressMenu: true },
-      { headerName: "Sport", field: "sport", width: 110, suppressMenu: true },
-      { headerName: "Gold", field: "gold", width: 100, suppressMenu: true },
-      { headerName: "Silver", field: "silver", width: 100, suppressMenu: true },
-      { headerName: "Bronze", field: "bronze", width: 100, suppressMenu: true },
-      { headerName: "Total", field: "total", width: 100, suppressMenu: true }
+      {
+        headerName: "Date", field: "date", width: 110,  filter: 'date',
+        filterParams: { apply: true, newRowsAction: 'keep' }
+      },
+      {
+        headerName: "Sport", field: "sport", width: 110, filter: 'text',
+        filterParams: { apply: true, newRowsAction: 'keep' }
+      },
+      {
+        headerName: "Gold", field: "gold", width: 100, filter: 'text',
+        filterParams: { apply: true, newRowsAction: 'keep' }
+      },
+      {
+        headerName: "Silver", field: "silver", width: 100, filter: 'text',
+        filterParams: { apply: true, newRowsAction: 'keep' }
+      },
+      {
+        headerName: "Bronze", field: "bronze", width: 100, filter: 'text',
+        filterParams: { apply: true, newRowsAction: 'keep' }
+      },
+      {
+        headerName: "Total", field: "total", width: 100, filter: 'text',
+        filterParams: { apply: true, newRowsAction: 'keep' }
+      }
     ];
     this.gridOptions = {
-      enableServerSideSorting: true,
+      // enableServerSideSorting: true,
       enableServerSideFilter: true,
       enableColResize: true,
       paginationPageSize: 500,
@@ -77,13 +98,16 @@ export class AgGridDemo {
       .then((res) => res.json())
       .then((res) => {
         this.allOfTheData = res;
-        this.allOfTheData.forEach( (data, index)=> {
-          data.id = 'R' + (index + 1);
+        this.allOfTheData.forEach((data, index) => {
+          data.id =  (+index + 1);
         });
         console.log("res", this.allOfTheData[0]);
         this.createNewDatasource();
       })
 
+  }
+  selectRow($event){
+    console.log("evnet", $event);
   }
   createNewDatasource() {
     if (!this.allOfTheData) {
@@ -96,11 +120,12 @@ export class AgGridDemo {
         // this code should contact the server for rows. however for the purposes of the demo,
         // the data is generated locally, a timer is used to give the experience of
         // an asynchronous call
-        console.log('asking for ' + params.startRow + ' to ' + params.endRow);
+
+        console.log('param datasource : ', JSON.stringify( params.filterModel));
         setTimeout(() => {
           // take a chunk of the array, matching the start and finish times
           // var dataAfterSortingAndFiltering = sortAndFilter(params.sortModel, params.filterModel);
-          console.log("allOfTheDate when create datasource : ", this.allOfTheData);
+          console.log("allOfTheDate when create datasource : ", this.allOfTheData.length);
           var rowsThisPage = this.allOfTheData.slice(params.startRow, params.endRow);
           // see if we have come to the last page. if we have, set lastRow to
           // the very last row of the last page. if you are getting data from
